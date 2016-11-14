@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f0f0f0">
+
+    <LinearLayout
+        android:id="@+id/ll_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:padding="1dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#dfdfdf" />
+
+        <EditText
+            android:id="@+id/et_search_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/shape_corner_search_city"
+            android:drawableLeft="@mipmap/icon_search_btn"
+            android:gravity="left"
+            android:hint="输入城市名或拼音查询"
+            android:imeOptions="actionSearch"
+            android:lines="1"
+            android:padding="10dp"
+            android:textColorHint="#b5b5b5"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#dfdfdf" />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_city_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_search">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerClient"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.example.wungko.cityselect.view.SideBarWithText xmlns:custom="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/sideBar"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="40dp"
+            custom:originalTextColor="#0071fa"
+            custom:selectedTextColor="#ff0000"
+            custom:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/layer"
+            style="@style/ToastText" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rl_search_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ll_search"
+        android:visibility="gone">
+
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>
