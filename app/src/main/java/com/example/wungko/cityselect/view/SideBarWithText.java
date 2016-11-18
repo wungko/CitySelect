@@ -17,11 +17,6 @@ public class SideBarWithText extends View {
 	// 触摸事件
 	private OnTouchingLetterChangedListener	onTouchingLetterChangedListener;
 
-	// 26个字母
-	// public static String[] b = { "A", "B", "C", "D", "E", "F", "G", "H", "I",
-	// "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W",
-	// "X", "Y", "Z", "#" };
-
 	public String[]							b				= {};
 
 	private int								maxNumber		= 27;
@@ -120,17 +115,11 @@ public class SideBarWithText extends View {
 		/**
 		 * 开始的位置为剩下的字母数的一半乘以每一个字母的高度 那么就能居中 不
 		 */
-		// int startH = (maxNumber - b.length) / 2 * singleHeight;
 		int startH = (int) (height / 2 - b.length / 2 * textSize);
 		// 绘制文字
 		paintText.setColor(originalColor);
 		paintText.setAntiAlias(true);
 		textSizeText = MeasureUtil.dp2px(getContext(), 8);
-//		if (isHaveABC){
-//			paintText.setTextSize(textSizeText);
-//			canvas.drawText("热门", width / 2 - paintText.measureText("热"), startH - textSizeText, paintText);
-//			canvas.drawText("城市", width / 2 - paintText.measureText("城"), startH, paintText);
-//		}
 		for (int i = 0; i < b.length; i++) {
 			paint.setColor(originalColor);
 			// paint.setTypeface(Typeface.DEFAULT_BOLD);
@@ -160,14 +149,8 @@ public class SideBarWithText extends View {
 		int startTextH = (int) (getHeight() / 2 - b.length / 2 * textSize - textSizeText);
 		int endH = (int) (getHeight() / 2 + b.length / 2 * textSize + textSize);
 		if (y >= startTextH && y <= endH) {
-			// final int c = (int) (y / getHeight() * maxNumber) - startH /
-			// singleHeight;// 点击y坐标所占总高度的比例*b数组的长度就等于点击b中的个数.
 			int c = -1;
 			if (y < startH){
-//				if (listener != null) {
-//					listener.onTouchingLetterChanged("热门城市");
-//					return true;
-//				}
 			}else{
 				c = (int) ((y - startH) / textSize);
 			}
@@ -190,17 +173,13 @@ public class SideBarWithText extends View {
 					if (oldChoose != c) {
 						if ((c >= 0 && c < b.length) || c == -1) {
 							if (listener != null) {
-								if (c == -1){
-									listener.onTouchingLetterChanged("热门城市");
-								}else{
+								if (c != -1){
 									listener.onTouchingLetterChanged(b[c]);
 								}
 
 							}
 							if (mTextDialog != null) {
-								if (c == -1){
-									mTextDialog.setText("热门\n城市");
-								}else{
+								if (c != -1){
 									mTextDialog.setText(b[c]);
 								}
 								mTextDialog.setVisibility(View.VISIBLE);
@@ -242,7 +221,7 @@ public class SideBarWithText extends View {
 	 */
 	public interface OnTouchingLetterChangedListener {
 
-		public void onTouchingLetterChanged(String s);
+		void onTouchingLetterChanged(String s);
 	}
 
 }
